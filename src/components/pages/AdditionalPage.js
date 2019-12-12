@@ -50,7 +50,7 @@ class AdditionalPage extends Component {
       <div>
         <div id="container" className="section">
           <div className="content">
-            <img src={this.state.bannerUrl}></img>
+            <img src={this.state.bannerUrl} alt="banner"></img>
           </div>
         </div>
         <div>

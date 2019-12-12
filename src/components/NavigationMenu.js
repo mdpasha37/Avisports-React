@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavigtionSubmenu from "./NavigationSubMenu";
+import { Link } from "react-router-dom";
 
 class NavigationMenu extends Component {
   state = {
@@ -35,7 +36,7 @@ class NavigationMenu extends Component {
         <div id="header">
           <div className="header-bar">
             <h1 className="logo">
-              <a>AviSports-logo</a>
+              <Link to="/">AviSports-logo</Link>
             </h1>
           </div>
           <ul className="navigation">
