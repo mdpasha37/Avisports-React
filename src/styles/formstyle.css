@@ -1,0 +1,19 @@
+.title-text{
+	color:black;
+	font-size:small;
+	font-weight:600;
+}
+
+.form-label-text{
+	color:balck;
+	font-size:small;
+	font-weight:900;
+}
+
+.form-inset{
+	font-size:small;
+}
+.disabledText{
+	color:#aaa;
+	font-style:italic;
+}
