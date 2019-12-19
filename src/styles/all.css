@@ -765,3 +765,10 @@ td {
   height: 288px;
   overflow: scroll;
 }
+.perLoader {
+  float: left;
+  /* width: 48%; */
+  margin-left: 10px;
+  margin-bottom: 20px;
+  height: 288px;
+}
