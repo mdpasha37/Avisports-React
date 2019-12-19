@@ -668,6 +668,9 @@ li.article-link {
 #searchTable {
   width: 100%;
   border-collapse: collapse;
+  /* float: right; */
+  /* margin-left: 9px; */
+  /* margin-bottom: 25px; */
 }
 
 td,
@@ -701,6 +704,10 @@ td {
   background-color: #ededf1;
 }
 
+#searchTable tr:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
 .aStyle a {
   color: #5a93bf;
   font-weight: bold;
@@ -710,4 +717,51 @@ td {
 #surfing_0 {
   width: 100%;
   height: 100%;
+}
+
+.articlesHeader {
+  font-size: 1.4em;
+  text-align: left;
+  padding: 5px;
+  background-color: #34547c;
+  color: #fff;
+}
+
+.scroll {
+  overflow: auto;
+  height: 178px;
+}
+
+.perSubmit {
+  margin: 10px;
+  background-color: #34547c;
+  border: none;
+  /* border-bottom: 3px solid #693cad; */
+  color: white;
+  font-weight: 500;
+  padding: 12px;
+}
+.perSubmit:hover {
+  cursor: pointer;
+}
+
+.form--radiogroup {
+  float: left;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  margin-left: 5px;
+}
+
+.perSubmit:disabled {
+  background-color: #e0e0e0;
+  color: #34547c;
+}
+
+.perTable {
+  float: left;
+  width: 48%;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  height: 288px;
+  overflow: scroll;
 }

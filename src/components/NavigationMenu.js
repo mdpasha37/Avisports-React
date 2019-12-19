@@ -52,6 +52,9 @@ class NavigationMenu extends Component {
                 />
               );
             })}
+            <li>
+              <a href="/articles">Articles</a>
+            </li>
           </ul>
         </div>
       </div>
