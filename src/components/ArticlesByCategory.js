@@ -12,16 +12,11 @@ class ArticlesByCategory extends Component {
     };
   }
 
-  sleep = milliseconds => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-  };
+  // sleep = milliseconds => {
+  //   return new Promise(resolve => setTimeout(resolve, milliseconds));
+  // };
 
   componentDidMount() {
-    console.log(
-      "Component did mount with value of loading: ",
-      this.state.loading
-    );
-
     this.setState({ loading: true }, async () => {
       let parentId;
       if (this.state.categoryId === "Tennis") {
@@ -40,21 +35,20 @@ class ArticlesByCategory extends Component {
       const url =
         "http://localhost:7003/sites/REST/resources/v1/search/sites/avisports/types/AVIArticle/assets?field:ImmediateParents=" +
         parentId;
-      await this.sleep(2000);
+      // await this.sleep(2000);
       const articles = await fetch(url, {
         headers: {
           Accept: "application/json"
         }
       });
       const articlesData = await articles.json();
-      console.log("Getting articles data: ", articlesData.items);
-      console.log("state loading before: ", this.state.loading);
+      console.log("Articles data: ", articlesData.items);
+      // this.props.loading(false);
 
       this.setState({
         articlesData: articlesData.items,
         loading: false
       });
-      console.log("state loading after: ", this.state.loading);
     });
   }
   render() {

@@ -9,7 +9,6 @@ class Personalizer extends Component {
       gender: "",
       age: "",
       disabled: false,
-      submitText: "Submit",
       error: ""
     };
   }
@@ -22,8 +21,7 @@ class Personalizer extends Component {
     } else {
       this.setState(() => ({
         error: "",
-        disabled: true,
-        submitText: "Form Submitted"
+        disabled: true
       }));
       const url = "https://yaztestapp.azurewebsites.net/api/getCatRank";
       const data = {
@@ -47,7 +45,7 @@ class Personalizer extends Component {
       })
         .then(response => response.json())
         .then(data => {
-          console.log("data from form submit", data);
+          console.log("Ranking recevied from API: ", data);
           this.props.onSubmitResponse(data);
         })
         .catch(console.log());
@@ -104,9 +102,7 @@ class Personalizer extends Component {
             </RadioGroup>
           </div>
           <div style={{ float: "left", marginRight: "64px" }}>
-            <button className="perSubmit" disabled={this.state.disabled}>
-              {this.state.submitText}
-            </button>
+            <button className="perSubmit">Submit</button>
           </div>
         </form>
       </div>

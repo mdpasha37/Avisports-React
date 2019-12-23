@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Personalizer from "../Personalizer";
 import ArticlesByCategory from "../ArticlesByCategory";
+import Loader from "react-loader-spinner";
 
 class ArticlesPage extends Component {
   constructor(props) {
@@ -8,9 +9,8 @@ class ArticlesPage extends Component {
     this.state = {
       ranking: {},
       isSubmitted: undefined,
+      loading: false,
       disabled: false,
-      like: "Like",
-      dislike: "Dislike",
       error: ""
     };
   }
@@ -22,7 +22,7 @@ class ArticlesPage extends Component {
       reward: reward,
       eventId: eventId
     };
-    console.log("Data for send reward", this.state.ranking, data);
+    // console.log("Data for send reward", this.state.ranking, data);
     if (eventId === undefined) {
       this.setState(() => ({ error: "Please submit the form first" }));
     } else {
@@ -42,11 +42,9 @@ class ArticlesPage extends Component {
   };
   onLike = () => {
     this.sendReward(0.9);
-    this.setState(() => ({ like: "Liked" }));
   };
   onDisLike = () => {
     this.sendReward(0.1);
-    this.setState(() => ({ dislike: "Disliked" }));
   };
 
   render() {
@@ -63,6 +61,7 @@ class ArticlesPage extends Component {
                   this.setState(() => ({
                     ranking: ranking,
                     isSubmitted: true,
+                    disabled: false,
                     error: ""
                   }));
                 }}
@@ -74,21 +73,21 @@ class ArticlesPage extends Component {
                 onClick={this.onLike}
                 disabled={this.state.disabled}
               >
-                {this.state.like}
+                {this.state.disabled ? "Liked" : "Like"}
               </button>
               <button
                 className="perSubmit"
                 onClick={this.onDisLike}
                 disabled={this.state.disabled}
               >
-                {this.state.dislike}
+                {this.state.disabled ? "Disliked" : "Dislike"}
               </button>
             </div>
             {this.state.isSubmitted &&
-              this.state.ranking.ranking.slice(0, 3).map(e => {
-                console.log(e);
+              this.state.ranking.ranking.slice(0, 3).map((e, index) => {
                 return <ArticlesByCategory key={e.id} id={e.id} />;
               })}
+            {};
           </div>
         </div>
       </div>
