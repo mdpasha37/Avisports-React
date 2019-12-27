@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Personalizer from "../Personalizer";
 import ArticlesByCategory from "../ArticlesByCategory";
-import Loader from "react-loader-spinner";
+// import Loader from "react-loader-spinner";
 
 class ArticlesPage extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class ArticlesPage extends Component {
   }
   componentDidMount() {}
   sendReward = reward => {
-    const url = "https://yaztestapp.azurewebsites.net/api/sendReward";
+    const url = `${process.env.REACT_APP_AZURE_SEND_REWARD}`;
     const eventId = this.state.ranking.eventId;
     const data = {
       reward: reward,
@@ -87,7 +87,6 @@ class ArticlesPage extends Component {
               this.state.ranking.ranking.slice(0, 3).map((e, index) => {
                 return <ArticlesByCategory key={e.id} id={e.id} />;
               })}
-            {};
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ import React from "react";
 import ReactHtmlParser from "react-html-parser";
 
 const HomepageArticles = props => {
-  console.log("Navigation");
   let htmlText = props.teaserText;
   let pageId = htmlText.match(/(?<=cid_=)(.*)(?=&)/);
   let replaceText = htmlText.match(/(?<=href=")(.*)(?=">)/);

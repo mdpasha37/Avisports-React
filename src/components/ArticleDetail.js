@@ -19,13 +19,10 @@ class ArticleDetail extends Component {
   };
   getArticleAttributes(articleId) {
     fetch(
-      "http://localhost:7003/sites/REST/resources/v1/aggregates/avisports/AVIArticle/" +
-        articleId +
-        "?assetDepth=2&fields=category,author,postDate,subheadline,relatedLinks,relatedStories,relatedImage,body;AVIArticle(id,headline,abstract,relatedImage);AVIImage(imageFile,caption,width,height,sidebarThumbnail)&expand=AVIArticle,AVIImage"
+      `${process.env.REACT_APP_AVISPORTS_API}AVIArticle/${articleId}?assetDepth=2&fields=category,author,postDate,subheadline,relatedLinks,relatedStories,relatedImage,body;AVIArticle(id,headline,abstract,relatedImage);AVIImage(imageFile,caption,width,height,sidebarThumbnail)&expand=AVIArticle,AVIImage`
     )
       .then(res => res.json())
       .then(data => {
-        console.log("Article attributes data: ", data);
         const dataArticleId = data.start;
         //const dataArticleHeadline = data[dataArticleId].headline;
         const dataBannerId = "AVIImage:" + data[dataArticleId].relatedImage.id;
@@ -53,13 +50,10 @@ class ArticleDetail extends Component {
   componentDidMount() {
     // let pageIdState = this.state.pageId;
     this.getArticleAttributes(this.props.match.params.articleId);
-    console.log("component Did Mount state: ", this.state.articleId);
   }
   componentDidUpdate(prevState) {
     const previousArticleId = prevState.match.params.articleId;
     const currentArticleId = this.props.match.params.articleId;
-    console.log("Previous state: ", previousArticleId);
-    console.log("current id: ", currentArticleId);
     if (previousArticleId !== currentArticleId) {
       this.getArticleAttributes(currentArticleId);
     }
@@ -95,7 +89,6 @@ class ArticleDetail extends Component {
           <div className="box">
             <h2 className="title">Related Stories</h2>
             {this.state.articleRelatedStories.map(e => {
-              console.log("Related: ", e);
               return (
                 <ArticleRelatedStories
                   key={e}
@@ -114,7 +107,6 @@ class ArticleDetail extends Component {
             <h2 className="title">Related Links</h2>
             <ul>
               {this.state.articleRelatedLinks.map(e => {
-                console.log("Related Links: ", e);
                 return (
                   <ArticleRelatedLinks
                     key={e}

@@ -11,7 +11,7 @@ class Homepage extends Component {
   };
   componentDidMount() {
     fetch(
-      "http://localhost:7003/sites/REST/resources/v1/aggregates/avisports/Page/1327351719456?assetDepth=1&fields=Page(banner,teaserImages,teaserText,bannerText);AVIImage(imageFile,width,height)&expand=Page,AVIImage"
+      `${process.env.REACT_APP_AVISPORTS_API}Page/1327351719456?assetDepth=1&fields=Page(banner,teaserImages,teaserText,bannerText);AVIImage(imageFile,width,height)&expand=Page,AVIImage`
     )
       .then(res => res.json())
       .then(data => {
@@ -37,7 +37,6 @@ class Homepage extends Component {
           homeTeasers: teaserArray,
           homepageObj: data
         });
-        console.log("homepage object", data);
       })
       .catch(console.log());
   }

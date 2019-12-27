@@ -23,7 +23,7 @@ class Personalizer extends Component {
         error: "",
         disabled: true
       }));
-      const url = "https://yaztestapp.azurewebsites.net/api/getCatRank";
+      const url = `${process.env.REACT_APP_AZURE_GET_CATRANK}`;
       const data = {
         rank: "true",
         contextFeatures: [

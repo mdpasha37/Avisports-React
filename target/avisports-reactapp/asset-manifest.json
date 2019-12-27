@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "http://130.61.113.147:7001/avisports-reactapp/static/css/main.09a1f6b0.chunk.css",
+    "main.js": "http://130.61.113.147:7001/avisports-reactapp/static/js/main.5c4d278a.chunk.js",
+    "main.js.map": "http://130.61.113.147:7001/avisports-reactapp/static/js/main.5c4d278a.chunk.js.map",
+    "runtime-main.js": "http://130.61.113.147:7001/avisports-reactapp/static/js/runtime-main.2dd77aaa.js",
+    "runtime-main.js.map": "http://130.61.113.147:7001/avisports-reactapp/static/js/runtime-main.2dd77aaa.js.map",
+    "static/js/2.fa218a2d.chunk.js": "http://130.61.113.147:7001/avisports-reactapp/static/js/2.fa218a2d.chunk.js",
+    "static/js/2.fa218a2d.chunk.js.map": "http://130.61.113.147:7001/avisports-reactapp/static/js/2.fa218a2d.chunk.js.map",
+    "index.html": "http://130.61.113.147:7001/avisports-reactapp/index.html",
+    "precache-manifest.49345229032c5c65244480fd6c716bd9.js": "http://130.61.113.147:7001/avisports-reactapp/precache-manifest.49345229032c5c65244480fd6c716bd9.js",
+    "service-worker.js": "http://130.61.113.147:7001/avisports-reactapp/service-worker.js",
+    "static/css/main.09a1f6b0.chunk.css.map": "http://130.61.113.147:7001/avisports-reactapp/static/css/main.09a1f6b0.chunk.css.map",
+    "static/js/2.fa218a2d.chunk.js.LICENSE": "http://130.61.113.147:7001/avisports-reactapp/static/js/2.fa218a2d.chunk.js.LICENSE",
+    "static/media/all.css": "http://130.61.113.147:7001/avisports-reactapp/static/media/next.5c461e69.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2dd77aaa.js",
+    "static/js/2.fa218a2d.chunk.js",
+    "static/css/main.09a1f6b0.chunk.css",
+    "static/js/main.5c4d278a.chunk.js"
+  ]
+}

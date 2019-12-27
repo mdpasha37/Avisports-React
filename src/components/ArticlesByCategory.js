@@ -32,9 +32,7 @@ class ArticlesByCategory extends Component {
       } else if (this.state.categoryId === "Football") {
         parentId = "1327351718595";
       }
-      const url =
-        "http://localhost:7003/sites/REST/resources/v1/search/sites/avisports/types/AVIArticle/assets?field:ImmediateParents=" +
-        parentId;
+      const url = `${process.env.REACT_APP_AVISPORTS_SEARCH_API}AVIArticle/assets?field:ImmediateParents=${parentId}`;
       // await this.sleep(2000);
       const articles = await fetch(url, {
         headers: {

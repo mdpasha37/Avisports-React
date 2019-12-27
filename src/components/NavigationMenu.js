@@ -9,7 +9,7 @@ class NavigationMenu extends Component {
   };
   componentDidMount() {
     fetch(
-      "http://localhost:7003/sites/REST/resources/v1/aggregates/avisports/navigation/Default?assetDepth=0&fields=Page(children,name,id);SiteNavigation(children)&expand=Page"
+      `${process.env.REACT_APP_AVISPORTS_API}navigation/Default?assetDepth=0&fields=Page(children,name,id);SiteNavigation(children)&expand=Page`
     )
       .then(res => res.json())
       .then(data => {
@@ -41,7 +41,7 @@ class NavigationMenu extends Component {
           </div>
           <ul className="navigation">
             <li>
-              <a href="/">{this.state.navigationHomeName}</a>
+              <a href="/avisports-reactapp">{this.state.navigationHomeName}</a>
             </li>
             {this.state.navigationSubMenu.map(subMenu => {
               return (
@@ -53,7 +53,7 @@ class NavigationMenu extends Component {
               );
             })}
             <li>
-              <a href="/articles">Articles</a>
+              <Link to="/articles">Articles</Link>
             </li>
           </ul>
         </div>

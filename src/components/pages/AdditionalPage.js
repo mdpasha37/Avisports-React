@@ -11,13 +11,10 @@ class AdditionalPage extends Component {
   };
   getPageAttributes(pageId) {
     fetch(
-      "http://localhost:7003/sites/REST/resources/v1/aggregates/avisports/Page/" +
-        pageId +
-        "?assetDepth=2&fields=AVIArticle(id,relatedImage,abstract,headline);Page(banner,titleContent1,titleContent2,Assoc_Named_contentList1,Assoc_Named_contentList2);AVIImage(imageFile,smallThumbnail,ClargeThumbnail);YouTube(externalid)&expand=Page,AVIImage,AVIArticle,YouTube"
+      `${process.env.REACT_APP_AVISPORTS_API}Page/${pageId}?assetDepth=2&fields=AVIArticle(id,relatedImage,abstract,headline);Page(banner,titleContent1,titleContent2,Assoc_Named_contentList1,Assoc_Named_contentList2);AVIImage(imageFile,smallThumbnail,ClargeThumbnail);YouTube(externalid)&expand=Page,AVIImage,AVIArticle,YouTube`
     )
       .then(res => res.json())
       .then(data => {
-        console.log("Additional Page data: ", data);
         const dataPageId = data.start;
         const dataBannerId = "AVIImage:" + data[dataPageId].banner.id;
         const dataBannerUrl = data[dataBannerId].imageFile_bloblink_;
@@ -33,13 +30,10 @@ class AdditionalPage extends Component {
   componentDidMount() {
     // let pageIdState = this.state.pageId;
     this.getPageAttributes(this.props.match.params.pageId);
-    console.log("component Did Mount state: ", this.state.pageId);
   }
   componentDidUpdate(prevState) {
     const previousPageId = prevState.match.params.pageId;
     const currentPageId = this.props.match.params.pageId;
-    console.log("Previous state: ", previousPageId);
-    console.log("current id: ", currentPageId);
     if (previousPageId !== currentPageId) {
       this.getPageAttributes(currentPageId);
     }

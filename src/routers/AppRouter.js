@@ -12,7 +12,7 @@ import "../styles/all.css";
 import "../styles/formstyle.css";
 
 const AppRouter = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE}>
     <div id="main">
       <NavigationMenu />
       <Switch>
@@ -32,7 +32,7 @@ const AppRouter = () => (
           path="/article/:articleId"
           render={props => <ArticleDetail {...props} />}
         />
-        <Route path="/articles">
+        <Route exact path="/articles">
           <ArticlesByCategory />
         </Route>
         <Route>
