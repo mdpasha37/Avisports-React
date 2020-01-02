@@ -10,12 +10,13 @@ class ArticlesPage extends Component {
       ranking: {},
       isSubmitted: undefined,
       loading: false,
-      disabled: false,
+      dislikeDisabled: false,
+      likeDisabled: false,
       error: ""
     };
   }
   componentDidMount() {}
-  sendReward = reward => {
+  sendReward = (reward, str) => {
     const url = `${process.env.REACT_APP_AZURE_SEND_REWARD}`;
     const eventId = this.state.ranking.eventId;
     const data = {
@@ -26,7 +27,20 @@ class ArticlesPage extends Component {
     if (eventId === undefined) {
       this.setState(() => ({ error: "Please submit the form first" }));
     } else {
-      this.setState(() => ({ error: "", disabled: true }));
+      if (str === "Liked") {
+        this.setState(() => ({
+          error: "",
+          likeDisabled: true,
+          dislikeDisabled: false
+        }));
+      } else {
+        this.setState(() => ({
+          error: "",
+          dislikeDisabled: true,
+          likeDisabled: false
+        }));
+      }
+
       fetch(url, {
         method: "POST",
         body: JSON.stringify(data),
@@ -36,15 +50,15 @@ class ArticlesPage extends Component {
       })
         .then(response => response.json())
         .then(data => {
-          console.log("Reward sent");
+          console.log("Reward sent as " + str);
         });
     }
   };
   onLike = () => {
-    this.sendReward(0.9);
+    this.sendReward(0.9, "Liked");
   };
   onDisLike = () => {
-    this.sendReward(0.1);
+    this.sendReward(0.1, "Disliked");
   };
 
   render() {
@@ -64,7 +78,8 @@ class ArticlesPage extends Component {
                   this.setState(() => ({
                     ranking: ranking,
                     isSubmitted: true,
-                    disabled: false,
+                    dislikeDisabled: false,
+                    likeDisabled: false,
                     error: ""
                   }));
                 }}
@@ -74,16 +89,16 @@ class ArticlesPage extends Component {
               <button
                 className="perSubmit"
                 onClick={this.onLike}
-                disabled={this.state.disabled}
+                disabled={this.state.likeDisabled}
               >
-                {this.state.disabled ? "Liked" : "Like"}
+                {this.state.likeDisabled ? "Liked" : "Like"}
               </button>
               <button
                 className="perSubmit"
                 onClick={this.onDisLike}
-                disabled={this.state.disabled}
+                disabled={this.state.dislikeDisabled}
               >
-                {this.state.disabled ? "Disliked" : "Dislike"}
+                {this.state.dislikeDisabled ? "Disliked" : "Dislike"}
               </button>
             </div>
             {this.state.loading ? (
