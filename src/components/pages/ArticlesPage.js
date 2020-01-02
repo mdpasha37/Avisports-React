@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Personalizer from "../Personalizer";
 import ArticlesByCategory from "../ArticlesByCategory";
-// import Loader from "react-loader-spinner";
+import Loader from "react-loader-spinner";
 
 class ArticlesPage extends Component {
   constructor(props) {
@@ -57,6 +57,9 @@ class ArticlesPage extends Component {
                 <h4 style={{ color: "red" }}>{this.state.error}</h4>
               )}
               <Personalizer
+                loading={loading => {
+                  this.setState(() => ({ loading: loading }));
+                }}
                 onSubmitResponse={ranking => {
                   this.setState(() => ({
                     ranking: ranking,
@@ -83,10 +86,21 @@ class ArticlesPage extends Component {
                 {this.state.disabled ? "Disliked" : "Dislike"}
               </button>
             </div>
-            {this.state.isSubmitted &&
+            {this.state.loading ? (
+              <div className="perLoader">
+                <Loader
+                  type="ThreeDots"
+                  color="#34547c"
+                  height={100}
+                  width={100}
+                />
+              </div>
+            ) : (
+              this.state.isSubmitted &&
               this.state.ranking.ranking.slice(0, 3).map((e, index) => {
                 return <ArticlesByCategory key={e.id} id={e.id} />;
-              })}
+              })
+            )}
           </div>
         </div>
       </div>

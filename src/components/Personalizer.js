@@ -14,11 +14,13 @@ class Personalizer extends Component {
   }
   personalizeSubmitFormData = e => {
     e.preventDefault();
+
     if (!this.state.occupation || !this.state.gender || !this.state.age) {
       this.setState(() => ({
         error: "Please select all the options"
       }));
     } else {
+      this.props.loading(true);
       this.setState(() => ({
         error: "",
         disabled: true
@@ -46,6 +48,7 @@ class Personalizer extends Component {
         .then(response => response.json())
         .then(data => {
           console.log("Ranking recevied from API: ", data);
+          this.props.loading(false);
           this.props.onSubmitResponse(data);
         })
         .catch(console.log());
